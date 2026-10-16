@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sanesy — The academic social network</title>
+<meta name="description" content="Sanesy connects driven students through peer accountability, cognitive study tools, and peer velocity.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070b16;--bg2:#0b1224;--card:#0e1730;--line:#1c2745;--tx:#e8ecf6;--mut:#8a96b4;--blue:#2563ff;--sky:#4aa3ff;--vio:#8b5cf6;--grn:#22c55e;--red:#f43f5e;--amb:#f59e0b;
+--font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+@media (prefers-color-scheme:light){:root[data-auto]{}}
+:root[data-theme="light"]{--bg:#f6f8fd;--bg2:#eaf0fb;--card:#fff;--line:#d9e1f2;--tx:#0c1530;--mut:#5a6685}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:var(--font);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--sky);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.grad{background:linear-gradient(90deg,var(--sky),var(--blue) 60%,var(--vio));-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--sky);margin-bottom:14px;display:block}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;font-weight:600;font-size:14px;padding:12px 22px;border-radius:10px;border:0;cursor:pointer;transition:filter .2s}
+.btn:hover{filter:brightness(1.12)}
+.btn.sm{padding:8px 14px;font-size:13px;border-radius:8px}
+/* nav */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700}
+.logo i{width:26px;height:26px;border-radius:8px;background:var(--blue);display:grid;place-items:center;font-style:normal;font-size:14px}
+.links{display:flex;gap:28px;font-size:13px;color:var(--mut)}
+.links a:hover,.links a.on{color:var(--tx)}
+.nav-r{display:flex;gap:10px;align-items:center}
+.ico{width:32px;height:32px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--tx);cursor:pointer;display:grid;place-items:center;font-size:14px}
+/* hero */
+.hero{text-align:center;padding:84px 0 56px;background:radial-gradient(60% 50% at 50% 0,rgba(37,99,255,.18),transparent)}
+h1{font-size:clamp(38px,6.4vw,64px);line-height:1.08;letter-spacing:-.03em;font-weight:800;max-width:760px;margin:0 auto 22px}
+.hero p.lead{max-width:600px;margin:0 auto 30px;color:var(--mut);font-size:17px}
+.proof{margin-top:18px;font-size:12px;color:var(--mut)}
+.mock{margin:56px auto 0;max-width:900px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card);box-shadow:0 30px 80px -20px rgba(37,99,255,.35);text-align:left}
+.bar{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:11px;color:var(--mut)}
+.bar b{width:9px;height:9px;border-radius:50%;background:#ff5f57}.bar b:nth-child(2){background:#febc2e}.bar b:nth-child(3){background:#28c840}
+.bar span{margin:0 auto;background:var(--bg);padding:3px 14px;border-radius:99px}
+.bar em{color:var(--grn);font-style:normal}
+.screen{display:grid;grid-template-columns:160px 1fr;min-height:340px;position:relative}
+.side{border-right:1px solid var(--line);padding:16px;display:grid;gap:8px;align-content:start}
+.side s{display:block;height:10px;border-radius:5px;background:var(--line);text-decoration:none}
+.side s:nth-child(1){background:var(--blue);width:70%}
+.main{padding:20px;display:grid;gap:14px;grid-template-columns:repeat(3,1fr);align-content:start}
+.tile{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;font-size:11px;color:var(--mut)}
+.tile strong{display:block;color:var(--tx);font-size:22px;margin-top:4px}
+.chart{grid-column:1/-1;height:150px;display:flex;align-items:flex-end;gap:8px;padding:14px;background:var(--bg);border:1px solid var(--line);border-radius:10px}
+.chart i{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(var(--sky),var(--blue))}
+.float{position:absolute;background:rgba(7,11,22,.88);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:11px;color:var(--mut);color:#c5cee6}
+.float b{display:block;color:#fff;font-size:12px}
+.f1{top:16px;left:176px}.f2{bottom:16px;right:16px}
+/* stats */
+.stats{border-block:1px solid var(--line);background:var(--bg2)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;padding-block:44px}
+.stats strong{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.02em;display:block}
+.stats span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+section{padding:96px 0}
+h2{font-size:clamp(28px,4vw,40px);line-height:1.12;letter-spacing:-.025em;font-weight:800}
+.sub{color:var(--mut);max-width:560px}
+.center{text-align:center}.center .sub{margin:14px auto 0}
+/* distinction */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.split p.body{color:var(--mut);margin:18px 0 26px;font-size:15px}
+.pts{display:grid;gap:18px}
+.pt{display:flex;gap:12px;font-size:13px;color:var(--mut)}
+.pt i{width:22px;height:22px;flex:none;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--sky);font-style:normal;font-size:11px}
+.pt b{display:block;color:var(--tx);font-size:14px}
+.photo{aspect-ratio:4/3;border-radius:16px;border:1px solid var(--line);position:relative;overflow:hidden;background:
+ radial-gradient(circle at 25% 30%,rgba(245,158,11,.35),transparent 30%),radial-gradient(circle at 75% 25%,rgba(74,163,255,.3),transparent 35%),linear-gradient(160deg,#16213f,#0a1020)}
+.photo q{position:absolute;inset:auto 0 0 0;padding:60px 20px 20px;background:linear-gradient(transparent,rgba(5,8,16,.95));font-size:13px;color:#fff;quotes:none}
+.photo q small{display:block;color:var(--grn);font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.photo q em{display:block;color:#9aa6c4;font-size:11px;margin-top:4px;font-style:normal}
+/* cards */
+.grid{display:grid;gap:16px;margin-top:48px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;transition:border-color .2s}
+.card:hover{border-color:var(--blue)}
+.card .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;margin-bottom:22px;font-size:15px;background:color-mix(in srgb,var(--c,var(--sky)) 15%,transparent);color:var(--c,var(--sky))}
+.card small{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);display:block}
+.card h3{font-size:19px;margin:4px 0 6px}
+.card p{font-size:13px;color:var(--mut)}
+.tag{display:inline-block;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:99px;background:color-mix(in srgb,var(--c,var(--sky)) 18%,transparent);color:var(--c,var(--sky));font-weight:600;vertical-align:middle;margin-left:6px}
+.eco{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.eco h2{font-size:28px;margin-bottom:6px}
+.eco .grid{margin-top:22px}
+.g2{grid-template-columns:1fr 1fr}
+.flag{display:grid;gap:10px}
+.flag .top{display:flex;justify-content:space-between;align-items:start}
+.live{font-size:10px;color:var(--grn)}
+.link{font-size:11px;color:var(--mut);display:flex;justify-content:space-between;margin-top:14px}
+.quote{font-style:italic;font-size:14px;color:var(--tx)}
+.quote cite{display:block;font-style:normal;font-size:11px;color:var(--mut);margin-top:16px}
+/* platform */
+.span2{grid-column:span 2}
+.cta{margin-top:48px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 32px}
+.cta h3{font-size:20px}.cta p{font-size:12px;color:var(--mut)}
+/* faq */
+.faq{max-width:640px;margin:44px auto 0;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:8px 24px}
+details{border-bottom:1px solid var(--line)}details:last-child{border:0}
+summary{cursor:pointer;list-style:none;padding:20px 0;font-weight:600;font-size:15px;display:flex;justify-content:space-between}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"⌄";color:var(--mut);transition:transform .2s}
+details[open] summary::after{transform:rotate(180deg)}
+details p{padding:0 0 20px;color:var(--mut);font-size:14px}
+footer{border-top:1px solid var(--line);padding:26px 0;font-size:11px;color:var(--mut)}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+footer nav{display:flex;gap:18px}
+@media(max-width:860px){
+ .links{display:none}.split,.eco{grid-template-columns:1fr}.g3{grid-template-columns:1fr}.span2{grid-column:auto}
+ .stats .wrap{grid-template-columns:repeat(2,1fr);gap:28px}.screen{grid-template-columns:1fr}.side{display:none}.f1{left:16px}.main{grid-template-columns:1fr 1fr}
+ section{padding:64px 0}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="logo" href="#top"><i>⚡</i>Sanesy</a>
+  <nav class="links" aria-label="Main"><a class="on" href="#top">Home</a><a href="#about">About Us</a><a href="#pricing">Pricing</a><a href="#team">Team</a><a href="#contact">Contact</a></nav>
+  <div class="nav-r"><button class="ico" id="theme" aria-label="Toggle theme">☀</button><a class="btn sm" href="#">Dashboard</a></div>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+  <span class="eyebrow">The academic social network</span>
+  <h1>Your future called. <span class="grad">It wants you to log in.</span></h1>
+  <p class="lead">Traditional feeds are engineered for distraction. Sanesy is built for acceleration — connecting driven students through peer accountability, cognitive study tools, and peer velocity.</p>
+  <a class="btn" href="#">Open Dashboard</a>
+  <p class="proof">Over 30 verified students learning on Sanesy</p>
+
+  <div class="mock" aria-hidden="true">
+    <div class="bar"><b></b><b></b><b></b><span>sanesy.app/workspace/study-hub</span><em>● Live Network</em></div>
+    <div class="screen">
+      <div class="side"><s></s><s></s><s></s><s></s><s></s></div>
+      <div class="main">
+        <div class="tile">Focus streak<strong>12 days</strong></div>
+        <div class="tile">Recall score<strong>91%</strong></div>
+        <div class="tile">Sprints today<strong>4</strong></div>
+        <div class="chart"><i style="height:35%"></i><i style="height:50%"></i><i style="height:42%"></i><i style="height:68%"></i><i style="height:60%"></i><i style="height:82%"></i><i style="height:74%"></i><i style="height:95%"></i></div>
+      </div>
+      <div class="float f1"><b>Active Cognitive Sprint</b>25 min · 1 of 4 focus</div>
+      <div class="float f2"><b>Virtual Study Rooms</b>28 peers focused right now</div>
+    </div>
+  </div>
+</div></div>
+
+<div class="stats"><div class="wrap">
+  <div><strong>5,030+</strong><span>Students enrolled</span></div>
+  <div><strong>4</strong><span>Active platforms</span></div>
+  <div><strong>100k+</strong><span>Milestones logged</span></div>
+  <div><strong>54+</strong><span>Universities represented</span></div>
+</div></div>
+
+<section id="about"><div class="wrap split">
+  <div>
+    <span class="eyebrow">The distinction</span>
+    <h2>Social media trades your attention for ads. <span class="grad">Sanesy trades effort for mastery.</span></h2>
+    <p class="body">The average undergraduate spends 4.2 hours daily inside algorithms designed to fragment their concentration. Sanesy inverts the dynamic: an intentional environment where every notification, peer action, and feed update reinforces your academic ambitions.</p>
+    <div class="pts">
+      <div class="pt"><i>◎</i><div><b>Zero algorithmic outrage</b>No vanity-metric loops or dopamine traps. Only academic progress and meaningful discussions.</div></div>
+      <div class="pt"><i>◎</i><div><b>Public &amp; private commitments</b>Bind your weekly targets to peer accountability groups who notice when you step off pace.</div></div>
+      <div class="pt"><i>◎</i><div><b>Built for flow state</b>An integrated suite of retrieval, simulation, and sprint tools that eliminate context switching.</div></div>
+    </div>
+  </div>
+  <div class="photo" role="img" aria-label="Students studying together">
+    <q><small>Peer accountability</small>“Sanesy gave our engineering study group the discipline to prepare for qualifying exams without distractions.”<em>— University Research Cohort</em></q>
+  </div>
+</div></section>
+
+<section style="background:var(--bg2)"><div class="wrap">
+  <div class="center"><span class="eyebrow">Cognitive architecture</span>
+  <h2>Tools Engineered for<br>Real Cognitive Retention</h2>
+  <p class="sub">Unlike generic note-taking apps, Sanesy embeds evidence-based learning protocols right into your daily workspace.</p></div>
+  <div class="grid g3">
+    <div class="card" style="--c:var(--red)"><div class="ic">⌁</div><small>Root-cause mistake analysis</small><h3>Trace</h3><p>Diagnose why you answered a problem incorrectly. Pinpoint concept confusion versus execution errors.</p></div>
+    <div class="card" style="--c:var(--sky)"><div class="ic">↻</div><small>Spaced retrieval practice</small><h3>Recall</h3><p>Active retrieval flashcards that adapt intervals based on self-reported confidence and retention decay.</p></div>
+    <div class="card" style="--c:var(--grn)"><div class="ic">⊘</div><small>Concept dependency graph</small><h3>Map</h3><p>Visualize prerequisite relationships between concepts to identify learning blockers before exams.</p></div>
+    <div class="card" style="--c:var(--amb)"><div class="ic">▤</div><small>Exam pressure simulation</small><h3>Sim</h3><p>Realistic timed exam drills with scenario testing, rigorous rubric grading, and actionable feedback.</p></div>
+    <div class="card" style="--c:var(--vio)"><div class="ic">⚡</div><small>Deep focus timeboxing</small><h3>Sprint</h3><p>Structured Pomodoro sprints with milestone checkpoints and acoustic focus presets to maintain flow.</p></div>
+    <div class="card" style="--c:var(--sky)"><div class="ic">☺</div><small>Synchronous study lounges</small><h3>Virtual Rooms</h3><p>Low-latency peer study rooms with audio/video check-ins and mutual accountability timers.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap eco">
+  <div><span class="eyebrow">Active ecosystem</span><h2>Running Flagships</h2><p class="sub" style="font-size:13px">Platforms live and operational for students worldwide.</p>
+    <div class="grid" style="grid-template-columns:1fr">
+      <div class="card flag"><div class="top"><div class="ic" style="--c:var(--blue);background:var(--blue);color:#fff">⚡</div><span class="live">● Live Application</span></div><h3>Sanesy</h3><p>The core social platform for goal tracking, peer accountability, study groups, and student discussion feeds.</p></div>
+      <div class="card flag"><div class="top"><div class="ic" style="--c:var(--vio);background:var(--vio);color:#fff">✦</div><span class="live">● Integrated Assistant</span></div><h3>SansAI</h3><p>Context-aware academic intelligence with fast inference, rigorous mathematical reasoning, and LaTeX formatting.</p></div>
+    </div></div>
+  <div><span class="eyebrow" style="color:var(--vio)">Pipeline &amp; research</span><h2>Upcoming Releases</h2><p class="sub" style="font-size:13px">Specialized utilities in active development. Click to preview specifications.</p>
+    <div class="grid g2">
+      <a href="#" class="card"><small>Beta</small><h3 style="font-size:16px">Sanxen</h3><p>Curated knowledge gateway and distraction-free academic browser.</p><div class="link"><span>View Specs</span><span>›</span></div></a>
+      <a href="#" class="card"><small>Reserved/ins</small><h3 style="font-size:16px">SansCloud</h3><p>Encrypted, high-speed vault tailored for student notes and portfolios.</p><div class="link"><span>View Specs</span><span>›</span></div></a>
+      <a href="#" class="card"><small>In development</small><h3 style="font-size:16px">SanGuardian</h3><p>Autonomous academic privacy and credentials protection shield.</p><div class="link"><span>View Specs</span><span>›</span></div></a>
+      <a href="#" class="card"><small>Experimental</small><h3 style="font-size:16px">SansLab</h3><p>Experimental laboratory testing cutting-edge cognitive workflows.</p><div class="link"><span>View Specs</span><span>›</span></div></a>
+    </div></div>
+</div></section>
+
+<section style="background:var(--bg2)"><div class="wrap">
+  <div class="center"><span class="eyebrow" style="color:var(--mut)">Student perspectives</span><h2 style="font-size:28px">Built with Real Student Feedback</h2></div>
+  <div class="grid g3">
+    <div class="card quote">“Sanesy fundamentally changed how I structure my study blocks. I replaced 3 hours of aimless social browsing with genuine accountability.”<cite>Sarah J. · Computer Science Junior · Berkeley</cite></div>
+    <div class="card quote">“The root-cause Trace tool helped me understand recurring errors in thermodynamics that textbook solution manuals never explained.”<cite>David M. · Mechanical Engineering Senior · Michigan</cite></div>
+    <div class="card quote">“Being in a virtual study room with peers across timezones makes late-night problem set sessions feel energizing instead of draining.”<cite>Elena R. · Biochemistry Sophomore · Oxford</cite></div>
+  </div>
+</div></section>
+
+<section id="pricing"><div class="wrap">
+  <div class="center"><span class="eyebrow">Available now</span>
+  <h2>One Platform. <span class="grad">More Possibilities.</span></h2>
+  <p class="sub">Connect with your community, share ideas, join groups, chat with others, and explore useful AI-powered tools for learning and productivity — all in Sanesy.</p></div>
+  <div class="grid g3">
+    <div class="card" style="--c:var(--sky)"><div class="ic">▢</div><h3 style="font-size:16px">Social Discussions <span class="tag">Live feed</span></h3><p>Post research queries, share academic insights, and join discussion prompts. Get real-peer feedback without algorithmic distraction.</p><div class="link" style="color:var(--sky)">Distraction-free timeline ›</div></div>
+    <div class="card" style="--c:var(--grn)"><div class="ic">☺</div><h3 style="font-size:16px">Study Groups &amp; Circles <span class="tag">Collaboration</span></h3><p>Form private or public academic communities, align on shared milestones, trade study materials, and organize campus meetups.</p><div class="link" style="color:var(--grn)">Synchronous study rooms ›</div></div>
+    <div class="card" style="--c:var(--vio)"><div class="ic">∿</div><h3 style="font-size:16px">Direct Messaging <span class="tag">1-on-1 calls</span></h3><p>Encrypted academic direct messaging with file sharing, voice notes, and built-in low-latency audio/video study calls.</p><div class="link" style="color:var(--vio)">WebRTC voice &amp; video ›</div></div>
+    <div class="card" style="--c:var(--amb)"><div class="ic">ⓘ</div><h3 style="font-size:16px">Sans AI Assistant <span class="tag">Voice-enabled</span></h3><p>Interactive academic AI with voice input, step-by-step problem breakdowns, formula verification, and structured deep thinking.</p><div class="link" style="color:var(--amb)">Integrated problem solving ›</div></div>
+    <div class="card span2" style="--c:var(--sky)"><div class="ic">◎</div><h3 style="font-size:16px">Productivity &amp; Learning Tools <span class="tag">Cognitive suite</span></h3><p>Full suite of student tools built right into your dashboard: Trace root-cause analyzer, Recall spaced retrieval, Sprint focus timers, and interactive study charts to maintain cognitive momentum.</p><div class="link" style="color:var(--sky)">Trace · Recall · Sprint · Goal velocity</div></div>
+  </div>
+  <div class="cta"><div><h3>Ready to elevate your academic workflow?</h3><p>Join verified students mastering courses, research, and collaborative projects.</p></div><a class="btn" href="#">Open Dashboard</a></div>
+</div></section>
+
+<section id="contact" style="padding-top:20px"><div class="wrap">
+  <div class="center"><span class="eyebrow" style="color:var(--mut)">Inquiries</span><h2 style="font-size:28px">Frequently Asked Questions</h2></div>
+  <div class="faq">
+    <details><summary>What is Sanesy?</summary><p>Sanesy is an academic social network where students track goals, study together, and use evidence-based learning tools in one distraction-free workspace.</p></details>
+    <details><summary>How is Sanesy different from typical social media?</summary><p>There are no engagement-bait algorithms or ads. Your feed surfaces academic progress, peer commitments, and study sessions.</p></details>
+    <details><summary>Is Sanesy free to use for students?</summary><p>Core features are free for verified students. Optional premium tools will be listed on the pricing page.</p></details>
+    <details><summary>Can I use Sanesy with my existing study group?</summary><p>Yes. Invite your group, set shared milestones, and hold each other accountable in a private circle or virtual room.</p></details>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <a class="logo" href="#top"><i>⚡</i>Sanesy</a>
+  <span>© 2026 Sanesy Inc. Engineered for intentional students. All rights reserved.</span>
+  <nav><a href="#about">About</a><a href="#pricing">Pricing</a><a href="#team">Team</a><a href="#">Terms</a><a href="#">Privacy</a></nav>
+</div></footer>
+
+<script>
+(function(){
+  var r=document.documentElement,b=document.getElementById('theme');
+  try{var t=localStorage.getItem('sanesy-theme');if(t){r.dataset.theme=t;b.textContent=t==='light'?'☾':'☀'}}catch(e){}
+  b.addEventListener('click',function(){
+    var n=r.dataset.theme==='light'?'dark':'light';r.dataset.theme=n;b.textContent=n==='light'?'☾':'☀';
+    try{localStorage.setItem('sanesy-theme',n)}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
